@@ -4,18 +4,10 @@
   become: true
   tasks:
 
-  - name: Update Repository Index
+
+  - name: Update repo and Install Apache + php and Htop packages
     apt:
       update_cache: yes
-    when: ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64"
-
-  - name: Update Repository Index
-    dnf:
-      update_cache: yes
-    when: ansible_distribution == "Rocky" and ansible_architecture == "x86_64"
-
-  - name: Install Apache + php support and Htop packages
-    apt:
       name:
         - apache2
         - libapache2-mod-php
@@ -23,8 +15,9 @@
       state: latest
     when: ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64"
 
-  - name: Install Apache + php support and Htop packages
+  - name: Update repo and Install Apache + php and Htop packages
     dnf:
+      update_cache: yes
       name:
         - httpd
         - php
