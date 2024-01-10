@@ -9,7 +9,7 @@
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
-  - name: Update Repository RedHat
+  - name: Update Repository Index
     dnf:
       update_cache: yes
     when: ansible_distribution == "Rocky"
@@ -28,12 +28,12 @@
 
   - name: Install Apache
     dnf:
-      name: apache2
+      name: httpd
       state: latest
     when: ansible_distribution == "Rocky"
 
   - name: Add php support for Apache
     dnf:
-       name: libapache2-mod-php
+       name: php
        state: latest
     when: ansible_distribution == "Rocky"

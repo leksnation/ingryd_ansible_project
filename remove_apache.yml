@@ -18,12 +18,12 @@
 
   - name: Remove apache on Rocky
     dnf:
-      name: apache2
+      name: httpd
       state: absent
     when: ansible_distribution == "Rocky"
 
   - name: Remove php support for Apache on Rocky
     dnf:
-       name: libapache2-mod-php
+       name: php
        state: absent
     when: ansible_distribution == "Rocky"
