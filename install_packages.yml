@@ -14,38 +14,20 @@
       update_cache: yes
     when: ansible_distribution == "Rocky" and ansible_architecture == "x86_64"
 
-  - name: Install Apache
+  - name: Install Apache + php support and Htop packages
     apt:
-      name: apache2
+      name:
+        - apache2
+        - libapache2-mod-php
+        - htop
       state: latest
     when: ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64"
 
-  - name: Add php support for Apache
-    apt:
-       name: libapache2-mod-php
-       state: latest
-    when: ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64"
-
-  - name: Install Htop
-      apt:
-        name: htop
-        state: latest
-    when: ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64"
-
-  - name: Install Apache
+  - name: Install Apache + php support and Htop packages
     dnf:
-      name: httpd
+      name:
+        - httpd
+        - php
+        - htop
       state: latest
-    when: ansible_distribution == "Rocky" and ansible_architecture == "x86_64"
-
-  - name: Add php support for Apache
-    dnf:
-       name: php
-       state: latest
-    when: ansible_distribution == "Rocky" and ansible_architecture == "x86_64"
-
-  - name: Install Htop
-      dnf:
-        name: htop
-        state: latest
     when: ansible_distribution == "Rocky" and ansible_architecture == "x86_64"
