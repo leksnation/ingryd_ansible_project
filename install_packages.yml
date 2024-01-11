@@ -9,9 +9,9 @@
     apt:
       update_cache: yes
       name:
-        - apache2
-        - libapache2-mod-php
-        - htop
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+        - "{{ htop_package }}"
       state: latest
     when: ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64"
 
@@ -19,8 +19,8 @@
     dnf:
       update_cache: yes
       name:
-        - httpd
-        - php
-        - htop
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+        - "{{ htop_package }}"
       state: latest
     when: ansible_distribution == "Rocky" and ansible_architecture == "x86_64"
